@@ -74,8 +74,8 @@
 
       // Create a 3D view
       const view = new SceneView({
-        container: "viewDiv",
-        map: webscene
+      container: "viewDiv",
+      map: webscene
       });
 
       // Create a search widget
@@ -89,13 +89,16 @@
       index: 0,
       });
 
-      // Create a legend
-      const legend = new Legend ({
-      view: view
+      // Expand widget for legend
+      const legendExpand = new Expand({
+      view: view,
+      content: new Legend({
+        view: view,
+      })
       });
 
       // Add legend to the map
-      view.ui.add(legend, "top-right"); 
+      view.ui.add(legendExpand, "top-right"); 
     });
   </script>
 </head>
