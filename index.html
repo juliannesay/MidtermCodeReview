@@ -58,8 +58,9 @@
       "esri/config",
       "esri/WebScene",
       "esri/views/SceneView",
-      "esri/widgets/Legend"
-    ], function(esriConfig, WebScene, SceneView, Legend){
+      "esri/widgets/Legend",
+      "esri/widgets/Search"
+    ], function(esriConfig, WebScene, SceneView, Legend, Search){
 
       // Adding an API key
       esriConfig.apiKey = "AAPK4fd83155c6f74dbaba989ef8d65a62e0HkzLPHOm66zEOTAE2eQ4meauWP-KHE_Axm9cNMA2Yz9b6Ovb6U5E3Wil66l4KCe_";
@@ -67,7 +68,7 @@
       // Create the web scene
       const webscene = new WebScene({
         portalItem: {
-          id: "//579f97b2f3b94d4a8e48a5f140a6639b"
+          //id: "579f97b2f3b94d4a8e48a5f140a6639b"
         }
       });
 
