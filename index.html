@@ -110,10 +110,9 @@
       // Create the editor
       const editor = new Editor({
       view: view,
-      snappingOptions: { 
-      enabled: true,
-      featureSources: [{layer: inspections}] 
-      }
+      layerInfos: [{
+        layer: inspections,
+      }]
       });
 
       view.ui.add(editor, "bottom-right");
