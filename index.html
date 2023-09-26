@@ -97,28 +97,6 @@
       index: 0,
       });
 
-      // Adding the const for the my airports feature layer
-      const myAirports = new FeatureLayer({
-      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/My_Airports_/FeatureServer",
-      outFields: ["AirportCode"],
-      //renderer: MyairportRenderer, //calling the icon
-      //labelingInfo: [MyairportLabels] //adding the AGOL labels
-      });
-
-      //map.add(myAirports); // Add myAirports to the map
-
-      // Create the editor 
-      const editor = new Editor({
-      view: view,
-      layerInfos: [myAirports],
-      });
-
-      // Add the editor widget to the view
-      view.ui.add(editor, {
-      position: "bottom-right",
-     });
-      
-
       // Expand widget for legend
       const legendExpand = new Expand({
       view: view,
