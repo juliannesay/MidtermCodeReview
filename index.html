@@ -97,6 +97,13 @@
       index: 0,
       });
 
+      // Create the editor
+      const editor = new Editor({
+      view: view
+      });
+
+      view.ui.add(editor, "bottom-left");
+
       // Expand widget for legend
       const legendExpand = new Expand({
       view: view,
