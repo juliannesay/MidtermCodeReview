@@ -1,8 +1,13 @@
 <html>
 <head>
+
+  <title>NOT SURE YET</title>
+
+  <!-- Meta for the browser to allow for mobile first design -->
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>ArcGIS Maps SDK for JavaScript Tutorials: Display a web scene</title>
+  
+  <!-- Adding the css for the survey button -->
   <style>
     html, body, #viewDiv {
       padding: 0;
@@ -10,39 +15,86 @@
       height: 100%;
       width: 100%;
     }
+
+    .addRecordBtn {
+      position: absolute;
+      z-index: 10;
+      top: 10px;
+      right: 10px;
+      background-color: #105f8d;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      }
+  
+      .addRecordBtn:hover {
+      background-color: #0e2e58;
+      }
   </style>
+
+  <!-- Style the page, map fills browser window -->
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <!-- Importing the css and libraries for esri.js -->
   <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/light/main.css">
   <script src="https://js.arcgis.com/4.27"></script>
+
+  <!-- Loading the modules -->
   <script>
     require([
-
       "esri/config",
-
       "esri/WebScene",
       "esri/views/SceneView",
       "esri/widgets/Legend"
+    ], function(esriConfig, WebScene, SceneView, Legend){
 
-    ], function(esriConfig, WebScene, SceneView, Legend) {
+      // Adding an API key
+      esriConfig.apiKey = "AAPK4fd83155c6f74dbaba989ef8d65a62e0HkzLPHOm66zEOTAE2eQ4meauWP-KHE_Axm9cNMA2Yz9b6Ovb6U5E3Wil66l4KCe_";
 
-     esriConfig.apiKey = "AAPK4fd83155c6f74dbaba989ef8d65a62e0HkzLPHOm66zEOTAE2eQ4meauWP-KHE_Axm9cNMA2Yz9b6Ovb6U5E3Wil66l4KCe_";
-
+      // Create the web scene
       const webscene = new WebScene({
         portalItem: {
-          id: "579f97b2f3b94d4a8e48a5f140a6639b"
+          id: "//579f97b2f3b94d4a8e48a5f140a6639b"
         }
       });
 
+      // Create a 3D view
       const view = new SceneView({
         container: "viewDiv",
         map: webscene
       });
 
+      // Create a search widget
+      const searchWidget = new Search({
+      view: view,
+      });
+
+      // Adds the search widget to the view
+      view.ui.add(searchWidget, {
+      position: "top-left",
+      index: 0,
+      });
+
+      // Create a legend
       const legend = new Legend ({
         view:view
       });
 
+      // Add legend to the map
       view.ui.add(legend, "top-right");
-
     });
   </script>
 </head>
