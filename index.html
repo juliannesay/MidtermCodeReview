@@ -97,12 +97,26 @@
       index: 0,
       });
 
-      // Create the editor
-      const editor = new Editor({
-      view: view
+      // Adding the const for the my airports feature layer
+      const inspections = new FeatureLayer({
+      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Building_Inspections/FeatureServer",
+      outFields: ["BuildingName"],
+      //renderer: MyairportRenderer, //calling the icon
+      //labelingInfo: [MyairportLabels] //adding the AGOL labels
       });
 
-      view.ui.add(editor, "bottom-left");
+      map.add(inspections); // Add inspections to the map
+
+      // Create the editor
+      const editor = new Editor({
+      view: view,
+      snappingOptions: { 
+      enabled: true,
+      featureSources: [{layer: inspections}] 
+      }
+      });
+
+      view.ui.add(editor, "bottom-right");
 
       // Expand widget for legend
       const legendExpand = new Expand({
