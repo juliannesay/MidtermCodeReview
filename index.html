@@ -78,7 +78,6 @@
       // Create a Locate widget
       const locate = new Locate({
       view: view,
-      //container: "locateDiv"
       });
 
       // Add the locate widget to the view
@@ -98,6 +97,16 @@
       index: 0,
       });
 
+      // Adding the const for the inspections feature layer
+      const inspections = new FeatureLayer({
+      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Building_Inspections/FeatureServer",
+      //outFields: ["AirportCode"],
+      //renderer: MyairportRenderer, //calling the icon
+      //labelingInfo: [MyairportLabels] //adding the AGOL labels
+      });
+
+      map.add(inspections); // Add inspections to the map
+
       // Expand widget for legend
       const legendExpand = new Expand({
       view: view,
@@ -112,14 +121,6 @@
       view.ui.add(legendExpand, "top-right"); 
     });
   </script>
-
-  <style>
-      div.esri-component.esri-expand.esri-widget.esri-widget--panel{ 
-      max-width: 185px;
-      background-color: white;
-      }
-  </style> 
-
 </head>
 <body>
   <div id="viewDiv"></div>
