@@ -97,30 +97,40 @@
       index: 0,
       });
 
-      // Adding the const for the inspections feature layer
-      const inspections = new FeatureLayer({
-      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Building_Inspections/FeatureServer",
-      outFields: ["BuildingName"],
+      // Adding the const for the my airports feature layer
+      const myAirports = new FeatureLayer({
+      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/My_Airports_/FeatureServer",
+      outFields: ["AirportCode"],
       //renderer: MyairportRenderer, //calling the icon
       //labelingInfo: [MyairportLabels] //adding the AGOL labels
       });
 
-      map.add(inspections); // Add inspections to the map
+      map.add(myAirports); // Add myAirports to the map
 
-      // Set the inspections point layer's LayerInfo
-      const pointInfos = {
-      layer: inspections,
-      title: "Inspections"
-      }
+      // // Adding the const for the inspections feature layer
+      // const inspections = new FeatureLayer({
+      // url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Building_Inspections/FeatureServer",
+      // outFields: ["BuildingName"],
+      // //renderer: MyairportRenderer, //calling the icon
+      // //labelingInfo: [MyairportLabels] //adding the AGOL labels
+      // });
 
-      // Create the editor
-      const editor = new Editor({
-      view: view,
-      layerInfos: [pointInfos]
-      });
+      // map.add(inspections); // Add inspections to the map
 
-      // Add the editor widget to the view
-      view.ui.add(editor, "bottom-right");
+      // // Set the inspections point layer's LayerInfo
+      // const pointInfos = {
+      // layer: inspections,
+      // title: "Inspections"
+      // }
+
+      // // Create the editor
+      // const editor = new Editor({
+      // view: view,
+      // layerInfos: [pointInfos]
+      // });
+
+      // // Add the editor widget to the view
+      // view.ui.add(editor, "bottom-right");
 
       // Expand widget for legend
       const legendExpand = new Expand({
