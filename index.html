@@ -97,6 +97,32 @@
       index: 0,
       });
 
+      // Adding the const for the inspections feature layer
+      const inspections = new FeatureLayer({
+      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Building_Inspections/FeatureServer",
+      outFields: ["BuildingName", "InspectionNeeded"],
+      //renderer: MyairportRenderer, //calling the icon
+      //labelingInfo: [MyairportLabels] //adding the AGOL labels
+      });
+
+      map.add(inspections); // Add inspections to the map
+
+     // Set the inspections point layer's LayerInfo
+     const pointInfos = {
+     layer: inspections
+     }
+
+     // Create the editor
+     const editor = new Editor({
+     view: view,
+     layerInfos: [pointInfos]
+     });
+
+     // Add the editor widget to the view
+     view.ui.add(editor, {
+      position: "bottom-right",
+     });
+
       // Expand widget for legend
       const legendExpand = new Expand({
       view: view,
