@@ -55,13 +55,9 @@
   <!-- Loading the modules -->
   <script>
     require([
-      "esri/config",
-      "esri/WebScene",
-      "esri/views/SceneView",
-      "esri/widgets/Legend",
-      "esri/widgets/Search",
-      "esri/widgets/Expand"
-    ], function(esriConfig, WebScene, SceneView, Legend, Search, Expand){
+      "esri/config", "esri/WebScene", "esri/views/SceneView", "esri/widgets/Legend", "esri/widgets/Search",
+      "esri/widgets/Expand", "esri/widgets/Locate", "esri/widgets/Editor"],
+          function(esriConfig, WebScene, SceneView, Legend, Search, Expand, Locate, Editor){
 
       // Adding an API key
       esriConfig.apiKey = "AAPK4fd83155c6f74dbaba989ef8d65a62e0HkzLPHOm66zEOTAE2eQ4meauWP-KHE_Axm9cNMA2Yz9b6Ovb6U5E3Wil66l4KCe_";
