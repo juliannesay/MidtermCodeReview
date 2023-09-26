@@ -79,6 +79,18 @@
       map: webscene
       });
 
+      // Create a Locate widget
+      const locate = new Locate({
+      view: view,
+      //container: "locateDiv"
+      });
+
+      // Add the locate widget to the view
+      view.ui.add(locate, {
+      position: "top-left",
+      //index: 2
+      });
+
       // Create a search widget
       const searchWidget = new Search({
       view: view,
