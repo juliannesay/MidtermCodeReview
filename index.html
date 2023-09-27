@@ -73,8 +73,8 @@
        index: 0
      });
 
-     // Setting up the my airport visited icon
-     const MyairportRenderer = {
+     // Setting up the BMP icon
+     const bmpRenderer = {
         "type": "simple",
         "symbol": {
         "type": "picture-marker",
@@ -84,8 +84,8 @@
         }
      }
 
-     // Const to make the AGOL airport labels
-     const MyairportLabels = {
+     // Const to make the BMP labels
+     const bmpLabels = {
         symbol: {
         type: "text",
         color: "#FFFFFF",
@@ -100,30 +100,30 @@
        },
        labelPlacement: "below-center",
        labelExpressionInfo: {
-       expression: "$feature.AirportCode"
+       expression: "$feature.Field_Insp"
        }
      };
 
      // Adding the const for the my airports feature layer
-     const myAirports = new FeatureLayer({
-     url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/My_Airports_/FeatureServer",
-     outFields: ["AirportCode"],
-     renderer: MyairportRenderer, //calling the icon
-     labelingInfo: [MyairportLabels] //adding the AGOL labels
+     const bmpLayer = new FeatureLayer({
+     url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/BMP_Facilities/FeatureServer/0",
+     outFields: ["Field_Insp"],
+     renderer: bmpRenderer, //calling the icon
+     labelingInfo: [bmpLabels] //adding the AGOL labels
      });
 
-     map.add(myAirports); // Add myAirports to the map
+     map.add(bmpLayer); // Add BMP's to the map
 
-     // Set the my airports visited point layer's LayerInfo
-     const pointInfosMyAirports = {
-     layer: myAirports,
-     title: "Airports Visited"
+     // Set the BMP point layer's LayerInfo
+     const pointInfosBMP = {
+     layer: bmpLayer,
+     title: "BMP"
      }
 
      // Create the editor
      const editor = new Editor({
      view: view,
-     layerInfos: [pointInfosMyAirports]
+     layerInfos: [pointInfosBMP]
      });
 
      // Add the editor widget to the view
@@ -136,7 +136,7 @@
      const legend = new Legend({
      view: view,
      style: "classic",
-     layerInfos: [pointInfosMyAirports]
+     layerInfos: [pointInfosBMP]
      });
 
      // Add legend to the view
