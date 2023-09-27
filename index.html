@@ -73,11 +73,52 @@
        index: 0
      });
 
-     
+     // Setting up the my airport visited icon
+     const MyairportRenderer = {
+        "type": "simple",
+        "symbol": {
+        "type": "picture-marker",
+        "url": "https://justin-alford.github.io/GEOG576-Lab3/outline_connecting_airports_black_24dp.png",
+        "width": "25px",
+        "height": "25px"
+        }
+     }
 
-    
+     // Const to make the AGOL airport labels
+     const MyairportLabels = {
+        symbol: {
+        type: "text",
+        color: "#FFFFFF",
+        haloColor: "#5E8D74",
+        haloSize: "2px",
+        font: {
+           size: "12px",
+           family: "Noto Sans",
+           style: "italic",
+           weight: "normal"
+        }
+       },
+       labelPlacement: "below-center",
+       labelExpressionInfo: {
+       expression: "$feature.AirportCode"
+       }
+     };
 
-     
+     // Adding the const for the my airports feature layer
+     const myAirports = new FeatureLayer({
+     url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/My_Airports_/FeatureServer",
+     outFields: ["AirportCode"],
+     renderer: MyairportRenderer, //calling the icon
+     labelingInfo: [MyairportLabels] //adding the AGOL labels
+     });
+
+     map.add(myAirports); // Add myAirports to the map
+
+     // Set the my airports visited point layer's LayerInfo
+     const pointInfosMyAirports = {
+     layer: myAirports,
+     title: "Airports Visited"
+     }
 
 /*      // Create the editor
      const editor = new Editor({
