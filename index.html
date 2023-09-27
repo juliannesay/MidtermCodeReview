@@ -73,165 +73,13 @@
        index: 0
      });
 
-   /*   // Define a pop-up for buildings/structures
-     const structures = {
-       "title": "<h2 style=color:crimson>Structure (Building):</h2>",
-       "content": "<hr color=crimson><br><b>State:</b> {PROP_ST}<br><i><b>Note:</b> Full Address data unavailable for most locations.</i><br><br><hr color=crimson><br><b>Building Classification:</b> {OCC_CLS}<br><b>Building Height (meters):</b> {HEIGHT} <br><b>Building Area (sq. meters):</b> {SQMETERS}<br><br><hr color=crimson><br><b>Link to feature layer: </b><a href = https://www.arcgis.com/home/item.html?id=0ec8512ad21e4bb987d7e848d14e7e24>USA Structures</a><br><br>"
-     } */
+     
+
     
-     // Adding the const for the BMP feature layer
-     const bmpLayer = new FeatureLayer({
-     url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/BMP_Facilities/FeatureServer/0",
-     //outFields: ["PROP_ST", "OCC_CLS", "HEIGHT", "SQMETERS"],
-     //popupTemplate: structures,
-     });
 
-     map.add(bmpLayer); // Add BMP's feature to map
+     
 
-     // Setting up the airport icon
-     const airportRenderer = {
-        "type": "simple",
-        "symbol": {
-          "type": "picture-marker",
-          "url": "https://justin-alford.github.io/GEOG576-Lab3/outline_local_airport_black_24dp.png",
-          "width": "18px",
-          "height": "18px"
-        }
-      }
-
-      // Setting up the heliport icon
-      const heliportRenderer = {
-        "type": "simple",
-        "symbol": {
-          "type": "picture-marker",
-          "url": "https://justin-alford.github.io/GEOG576-Lab3/helicopter.png",
-          "width": "18px",
-          "height": "18px"
-        }
-      }
-
-       // Setting up the my airport visited icon
-       const MyairportRenderer = {
-        "type": "simple",
-        "symbol": {
-          "type": "picture-marker",
-          "url": "https://justin-alford.github.io/GEOG576-Lab3/outline_connecting_airports_black_24dp.png",
-          "width": "25px",
-          "height": "25px"
-        }
-      }
-
-     // Const to make the airport labels
-     const airportLabels = {
-        symbol: {
-        type: "text",
-        color: "#FFFFFF",
-        haloColor: "#5E8D74",
-        haloSize: "2px",
-        font: {
-           size: "12px",
-           family: "Noto Sans",
-           style: "italic",
-           weight: "normal"
-        }
-       },
-       labelPlacement: "above-center",
-       labelExpressionInfo: {
-       expression: "$feature.Fac_Name"
-       }
-     };
-
-     // Const to make the AGOL airport labels
-     const MyairportLabels = {
-        symbol: {
-        type: "text",
-        color: "#FFFFFF",
-        haloColor: "#5E8D74",
-        haloSize: "2px",
-        font: {
-           size: "12px",
-           family: "Noto Sans",
-           style: "italic",
-           weight: "normal"
-        }
-       },
-       labelPlacement: "below-center",
-       labelExpressionInfo: {
-       expression: "$feature.AirportCode"
-       }
-     };
-
-     // Define a pop-up for airports
-      const airports = {
-        "title": "<h2 style=color:Maroon>Airport:</h2>",
-        "content": "<hr color=Maroon><br><b>Name:</b> {Fac_Name}<br><br><hr color=Maroon><br><b>City:</b> {City}<br><b>State:</b> {State_Name} <br><br><hr color=Maroon><br><b>Link to feature layer: </b><a href = https://uw-mad.maps.arcgis.com/home/item.html?id=56a0782145704a909d3df5bda5dba736>US Airports</a><br><br>"
-      }
-
-      // Define a pop-up for heliports
-      const heliports = {
-        "title": "<h2 style=color:Maroon>Heliport:</h2>",
-        "content": "<hr color=Maroon><br><b>Name:</b> {Fac_Name}<br><br><hr color=Maroon><br><b>City:</b> {City}<br><b>State:</b> {State_Name} <br><br><hr color=Maroon><br><b>Link to feature layer: </b><a href = https://uw-mad.maps.arcgis.com/home/item.html?id=56a0782145704a909d3df5bda5dba736>US Airports</a><br><br>"
-      }
-
-      // Create an airport FeatureLayer from a service 
-      const usaAirportsLayer = new FeatureLayer({
-      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports_/FeatureServer",
-      outFields: ["Fac_Name", "City", "State_Name"],
-      popupTemplate: airports,
-      renderer: airportRenderer, //calling the icon
-      definitionExpression: "Fac_Type = 'AIRPORT'", //adding sql to filter for airports
-      labelingInfo: [airportLabels] //adding the labels
-      });
-
-      map.add(usaAirportsLayer);  // Add airports to the map
-
-      // Create a heliport FeatureLayer from a service 
-      const usaHeliportsLayer = new FeatureLayer({
-      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/US_Airports_/FeatureServer",
-      outFields: ["Fac_Name", "City", "State_Name"],
-      popupTemplate: heliports,
-      renderer: heliportRenderer,  //calling the icon
-      definitionExpression: "Fac_Type = 'HELIPORT'", //adding sql to filter for heliports
-      labelingInfo: [airportLabels] //adding the labels
-      });
-
-      map.add(usaHeliportsLayer); // Add heliports to the map
-
-      // Adding the const for the my airports feature layer
-      const myAirports = new FeatureLayer({
-      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/My_Airports_/FeatureServer",
-      outFields: ["AirportCode"],
-      renderer: MyairportRenderer, //calling the icon
-      labelingInfo: [MyairportLabels] //adding the AGOL labels
-      });
-
-      map.add(myAirports); // Add myAirports to the map
-
-      // Set the my airports visited point layer's LayerInfo
-      const pointInfosMyAirports = {
-      layer: myAirports,
-      title: "Airports Visited"
-      }
-
-      // Set the airport point layer's LayerInfo
-      const pointInfosAirport = {
-      layer: usaAirportsLayer,
-      title: "US Airports"
-      }
-
-      // Set the heliport point layer's LayerInfo
-      const pointInfosHeliport = {
-      layer: usaHeliportsLayer,
-      title: "US Heliports"
-      }
-
-      // Set the building/structures point layer's LayerInfo
-      const pointInfosBuilding = {
-      layer: usaStructuresLayer,
-      title: "Buildings"
-      }
-
-     // Create the editor
+/*      // Create the editor
      const editor = new Editor({
      view: view,
      layerInfos: [pointInfosMyAirports]
@@ -251,7 +99,7 @@
      });
 
      // Add legend to the view
-     view.ui.add(legend, "bottom-left");
+     view.ui.add(legend, "bottom-left"); */
 
     });  
   </script>
