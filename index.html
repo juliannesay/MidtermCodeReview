@@ -123,21 +123,16 @@
      }
 
      // Setting up the storm main color
-     let StormMainrenderer = {
-     type: "unique-value", 
-     uniqueValueGroups: [{
-     classes: [{
-       symbol: {
-        color: "green"
-       }
-     }]
-     }]
-     }
+     const simpleLineSymbol = {
+     type: "simple-line",
+     color: [0, 128, 0],
+     width: 2
+     };
 
      // Adding the const for the storm mains feature layer
      const stormMainLayer = new FeatureLayer({
      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterMains/FeatureServer",
-     renderer: StormMainrenderer,
+     renderer: simpleLineSymbol,
      });
 
      map.add(stormMainLayer); // Add storm mains to the map
