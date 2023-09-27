@@ -40,6 +40,8 @@
      // Expand widget for basemap gallery
      const basemapGalleryExpand = new Expand({
        view: view,
+       expandTooltip: "Expand Basemaps",
+       collapseTooltip: "Collapse Basemaps",
        content: new BasemapGallery({
          view: view,
        })
@@ -156,7 +158,7 @@
   <!--CSS to make a full screen map and style the legend-->
   <style>html,  body,  #viewDiv {padding: 0;  margin: 0;  height: 100%;  width: 100%;}
          div.esri-component.esri-legend.esri-widget.esri-widget--panel { 
-           max-width: 165px;
+           max-width: 175px;
            background-color: rgba(227, 236, 236, 0.75);
          }
   </style> 
