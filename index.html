@@ -80,7 +80,7 @@
         "type": "simple",
         "symbol": {
         "type": "picture-marker",
-        "url": "https://justin-alford.github.io/GEOG576-MidtermProject/water_drop_FILL0_wght400_GRAD0_opsz24.png",
+        "url": "https://justin-alford.github.io/GEOG576-MidtermProject/water.png",
         "width": "25px",
         "height": "25px"
         }
@@ -171,17 +171,30 @@
      title: "Stormwater Manholes"
      }
 
+     // Setting up the storm inlet icon
+     const inletRenderer = {
+     "type": "simple",
+     "symbol": {
+     "type": "picture-marker",
+     "url": "https://justin-alford.github.io/GEOG576-MidtermProject/square.png",
+     "width": "20px",
+     "height": "20px"
+     }
+     }
 
+     // Adding the const for the storm inlet feature layer
+     const inletLayer = new FeatureLayer({
+     url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterInlets/FeatureServer",
+     renderer: inletRenderer, //calling the icon
+     });
 
+     map.add(inletLayer); // Add storm inlets to the map
 
-
-
-
-
-
-
-
-
+     // Set the storm inlet point layers LayerInfo
+     const pointInfosInlet = {
+     layer: inletLayer,
+     title: "Stormwater Inlets"
+     }
 
      // Create Editor
      const editor = new Editor({
@@ -206,7 +219,7 @@
      // Create the legend
      const legend = new Legend({
      view: view,
-     layerInfos: [pointInfosManhole, pointInfosStormMain, pointInfosBMP]
+     layerInfos: [pointInfosInlet, pointInfosManhole, pointInfosStormMain, pointInfosBMP]
      });
 
      // Create the expand legend
