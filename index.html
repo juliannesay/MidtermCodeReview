@@ -16,10 +16,10 @@
       "esri/widgets/Locate", "esri/widgets/Search", "esri/Graphic", "esri/layers/GraphicsLayer",
       "esri/geometry/Polyline", "esri/geometry/Polygon", "esri/layers/FeatureLayer",
       "esri/renderers/SimpleRenderer", "esri/symbols/PictureMarkerSymbol", "esri/widgets/Editor",
-      "esri/widgets/Legend", "esri/widgets/Expand"], 
+      "esri/widgets/Legend", "esri/widgets/Expand", "esri/renderers/UniqueValueRenderer"], 
         function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic, GraphicsLayer,
           Polyline, Polygon, FeatureLayer, SimpleRenderer, PictureMarkerSymbol, Editor, Legend,
-          Expand) {   
+          Expand, UniqueValueRenderer) {   
    
      // Adding an API key  
      esriConfig.apiKey = "AAPK4fd83155c6f74dbaba989ef8d65a62e0HkzLPHOm66zEOTAE2eQ4meauWP-KHE_Axm9cNMA2Yz9b6Ovb6U5E3Wil66l4KCe_";
@@ -122,9 +122,16 @@
      title: "BMP Facilities"
      }
 
+     // Setting up the storm main color
+     const StormMainrenderer = {
+        "type": "unique-value",
+        "color": "green"
+     }
+
      // Adding the const for the storm mains feature layer
      const stormMainLayer = new FeatureLayer({
      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterMains/FeatureServer",
+     renderer: StormMainrenderer,
      });
 
      map.add(stormMainLayer); // Add storm mains to the map
