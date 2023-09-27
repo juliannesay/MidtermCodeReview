@@ -37,11 +37,6 @@
      container: "viewDiv" // Div element
      });
 
-   
-
-   
-
-
      // Expand widget for basemap gallery
      const basemapGalleryExpand = new Expand({
        view: view,
@@ -78,20 +73,20 @@
        index: 0
      });
 
-     // Define a pop-up for buildings/structures
+   /*   // Define a pop-up for buildings/structures
      const structures = {
        "title": "<h2 style=color:crimson>Structure (Building):</h2>",
        "content": "<hr color=crimson><br><b>State:</b> {PROP_ST}<br><i><b>Note:</b> Full Address data unavailable for most locations.</i><br><br><hr color=crimson><br><b>Building Classification:</b> {OCC_CLS}<br><b>Building Height (meters):</b> {HEIGHT} <br><b>Building Area (sq. meters):</b> {SQMETERS}<br><br><hr color=crimson><br><b>Link to feature layer: </b><a href = https://www.arcgis.com/home/item.html?id=0ec8512ad21e4bb987d7e848d14e7e24>USA Structures</a><br><br>"
-     }
+     } */
     
-     // Adding the const for the structures feature layer
-     const usaStructuresLayer = new FeatureLayer({
-     url: "https://services2.arcgis.com/FiaPA4ga0iQKduv3/arcgis/rest/services/USA_Structures_View/FeatureServer",
-     outFields: ["PROP_ST", "OCC_CLS", "HEIGHT", "SQMETERS"],
-     popupTemplate: structures,
+     // Adding the const for the BMP feature layer
+     const bmpLayer = new FeatureLayer({
+     url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/BMP_Facilities/FeatureServer/0",
+     //outFields: ["PROP_ST", "OCC_CLS", "HEIGHT", "SQMETERS"],
+     //popupTemplate: structures,
      });
 
-     map.add(usaStructuresLayer); // Add structures feature to map
+     map.add(bmpLayer); // Add BMP's feature to map
 
      // Setting up the airport icon
      const airportRenderer = {
