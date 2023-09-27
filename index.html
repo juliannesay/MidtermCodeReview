@@ -123,9 +123,17 @@
      }
 
      // Setting up the storm main color
-     const StormMainrenderer = {
-        "type": "unique-value",
-        "color": "green"
+     let StormMainrenderer = {
+     type: "unique-value", 
+     uniqueValueGroups: [{
+     classes: [{
+       symbol: {
+        // an object of common symbol properties
+        ...commonProperties,
+        color: "green"
+       }
+     }]
+     }]
      }
 
      // Adding the const for the storm mains feature layer
@@ -136,7 +144,7 @@
 
      map.add(stormMainLayer); // Add storm mains to the map
 
-     // Set the storm mains point layer's LayerInfo
+     // Set the storm mains point layers LayerInfo
      const pointInfosStormMain = {
      layer: stormMainLayer,
      title: "Stormwater Mains"
