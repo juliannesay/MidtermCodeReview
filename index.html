@@ -1,78 +1,56 @@
 <html>
 <head>
 
-  <title>Building Inspections</title>
+  <title>BMP Inspections</title>
 
   <!-- Meta for the browser to allow for mobile first design -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
   
-  <!-- Adding the css for the survey button -->
-  <style>
-    html, body, #viewDiv {
-      padding: 0;
-      margin: 0;
-      height: 100%;
-      width: 100%;
-    }
-
-    .addRecordBtn {
-      position: absolute;
-      z-index: 10;
-      top: 10px;
-      right: 10px;
-      background-color: #105f8d;
-      color: white;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      font-size: 14px;
-      cursor: pointer;
-      text-decoration: none;
-      }
-  
-      .addRecordBtn:hover {
-      background-color: #0e2e58;
-      }
-  </style>
-
-  <!-- Style the page, map fills browser window -->
-  <style>
-    html,
-    body,
-    #viewDiv {
-      padding: 0;
-      margin: 0;
-      height: 100%;
-      width: 100%;
-    }
-  </style>
-
-  <!-- Importing the css and libraries for esri.js -->
-  <link rel="stylesheet" href="https://js.arcgis.com/4.27/esri/themes/light/main.css">
-  <script src="https://js.arcgis.com/4.27"></script>
+  <!-- Calls for the arcgis api's CSS file and JS library-->
+  <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.25/"></script>
 
   <!-- Loading the modules -->
-  <script>
-    require([
-      "esri/config", "esri/WebScene", "esri/views/SceneView", "esri/widgets/Legend", "esri/widgets/Search",
-      "esri/widgets/Expand", "esri/widgets/Locate", "esri/widgets/Editor"],
-          function(esriConfig, WebScene, SceneView, Legend, Search, Expand, Locate, Editor){
+  <script>  
+      require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/BasemapGallery", 
+      "esri/widgets/Locate", "esri/widgets/Search", "esri/Graphic", "esri/layers/GraphicsLayer",
+      "esri/geometry/Polyline", "esri/geometry/Polygon", "esri/layers/FeatureLayer",
+      "esri/renderers/SimpleRenderer", "esri/symbols/PictureMarkerSymbol", "esri/widgets/Editor",
+      "esri/widgets/Legend", "esri/widgets/Expand"], 
+        function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic, GraphicsLayer,
+          Polyline, Polygon, FeatureLayer, SimpleRenderer, PictureMarkerSymbol, Editor, Legend,
+          Expand) {   
 
       // Adding an API key
       esriConfig.apiKey = "AAPK4fd83155c6f74dbaba989ef8d65a62e0HkzLPHOm66zEOTAE2eQ4meauWP-KHE_Axm9cNMA2Yz9b6Ovb6U5E3Wil66l4KCe_";
 
-      // Create the web scene
-      const webscene = new WebScene({
-        portalItem: {
-          id: "ab5c036d8d704eb2b46af7a27bdcab0d"  // Building Inspections web scene I made
-        }
+      // Create the map
+      const map = new Map({ 
+      basemap: "arcgis-modern-antique" // Basemap layer service 
       });
 
-      // Create a 3D view
-      const view = new SceneView({
-      container: "viewDiv",
-      map: webscene
+      // Create a 2D view
+      const view = new MapView({
+      map: map,
+      center: [-77.442683, 37.534202], // Longitude, latitude
+      zoom: 18, // Zoom level
+      container: "viewDiv" // Div element
+      });
+
+      // Expand widget for basemap gallery
+      const basemapGalleryExpand = new Expand({
+      view: view,
+      content: new BasemapGallery({
+      view: view,
+      })
+      });
+
+      // Add the basemap gallery to the view
+      view.ui.add(basemapGalleryExpand, {
+      position: "top-right",
+      index: 0,
       });
 
       // Create a Locate widget
@@ -83,7 +61,7 @@
       // Add the locate widget to the view
       view.ui.add(locate, {
       position: "top-left",
-      //index: 2
+      index: 2
       });
 
       // Create a search widget
@@ -96,6 +74,32 @@
       position: "top-left",
       index: 0,
       });
+
+      // Adding the const for the structures feature layer
+      const bmpLayer = new FeatureLayer({
+      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/BMP_Facilities/FeatureServer",
+      outFields: ["BMP_Name", "Date_Last_", "Last_Field", "Field_Insp"],
+      });
+
+      map.add(bmpLayer); // Add BMP's feature to map
+
+      // Set the BMP point layer's LayerInfo
+      const pointInfosBMP = {
+      layer: bmpLayer,
+      title: "BMP Inspections"
+      }
+
+      // Create the editor
+      const editor = new Editor({
+      view: view,
+      layerInfos: [pointInfosBMP]
+      });
+
+     // Add the editor widget to the view
+     view.ui.add(editor, {
+      position: "top-right",
+      index: 0
+     });
 
       // Expand widget for legend
       const legendExpand = new Expand({
