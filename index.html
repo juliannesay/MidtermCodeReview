@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>BMP Inspections</title>
+  <title>Henrico County BMP's</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
@@ -32,8 +32,8 @@
      // Create a 2D view
      const view = new MapView({
      map: map,
-     center: [-77.442683, 37.534202], // Longitude, latitude
-     zoom: 18, // Zoom level
+     center: [-77.4880665, 37.653949], // Longitude, latitude of Public Works where employees will start from
+     zoom: 16, // Zoom level
      container: "viewDiv" // Div element
      });
 
@@ -117,7 +117,7 @@
      // Set the BMP point layer's LayerInfo
      const pointInfosBMP = {
      layer: bmpLayer,
-     title: "BMP"
+     title: "BMP Locations"
      }
 
      // Create the editor
