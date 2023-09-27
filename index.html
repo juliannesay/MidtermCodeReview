@@ -146,6 +146,36 @@
      title: "Stormwater Mains"
      }
 
+     // Setting up the storm manholes icon
+     const manholeRenderer = {
+     "type": "simple",
+     "symbol": {
+     "type": "picture-marker",
+     "url": "https://justin-alford.github.io/GEOG576-MidtermProject/manhole.png",
+     "width": "25px",
+     "height": "25px"
+     }
+     }
+
+     // Adding the const for the storm manhole feature layer
+     const manholeLayer = new FeatureLayer({
+     url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterManholes/FeatureServer",
+     renderer: manholeRenderer, //calling the icon
+     });
+
+     map.add(manholeLayer); // Add storm manholes to the map
+
+     // Set the storm manhole point layers LayerInfo
+     const pointInfosManhole = {
+     layer: manholeLayer,
+     title: "Stormwater Manholes"
+     }
+
+
+
+
+
+
 
 
 
@@ -176,7 +206,7 @@
      // Create the legend
      const legend = new Legend({
      view: view,
-     layerInfos: [pointInfosStormMain, pointInfosBMP]
+     layerInfos: [pointInfosManhole, pointInfosStormMain, pointInfosBMP]
      });
 
      // Create the expand legend
