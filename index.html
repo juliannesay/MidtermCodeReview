@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Airports and more!</title>
+  <title>BMP Inspections</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
   <script src="https://js.arcgis.com/4.25/"></script>
 
-  <!--Adding modules, API key, and map constant needed for a full screen map app-->
+  <!-- Loading the modules -->
   <script>  
     require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/BasemapGallery", 
       "esri/widgets/Locate", "esri/widgets/Search", "esri/Graphic", "esri/layers/GraphicsLayer",
@@ -21,159 +21,42 @@
           Polyline, Polygon, FeatureLayer, SimpleRenderer, PictureMarkerSymbol, Editor, Legend,
           Expand) {   
    
+     // Adding an API key  
      esriConfig.apiKey = "AAPK4fd83155c6f74dbaba989ef8d65a62e0HkzLPHOm66zEOTAE2eQ4meauWP-KHE_Axm9cNMA2Yz9b6Ovb6U5E3Wil66l4KCe_";
+     
+     // Create the map
      const map = new Map({ 
-      basemap: "arcgis-modern-antique" // Basemap layer service 
+     basemap: "osm-streets" // Basemap layer service - good layer for navigating by foot, shows trails
      });
      
+     // Create a 2D view
      const view = new MapView({
-       map: map,
-       center: [-77.442683, 37.534202], // Longitude, latitude
-       zoom: 18, // Zoom level
-       container: "viewDiv" // Div element
-      });
+     map: map,
+     center: [-77.442683, 37.534202], // Longitude, latitude
+     zoom: 18, // Zoom level
+     container: "viewDiv" // Div element
+     });
 
      // Adding the constructor for the graphics layer
      const graphicsLayer = new GraphicsLayer();  
-       map.add(graphicsLayer);
+     map.add(graphicsLayer);
 
-     // Defining the geometry of the point
-     const point = { //Create a point  
-       type: "point",  
-       longitude: -77.443278,    //long lat of Freedom Monument
-       latitude: 37.534564,
-     };
+   
 
-     // Defining the marker style
-     const simpleMarkerSymbol = {  
-       type: "simple-marker", 
-       style: "diamond", 
-       color: [193, 5, 56],
-       outline: {  
-       color: [255, 255, 255], // White  
-       width: 1
-       }  
-     };
+  
 
      // Defining popup properties
      const popupTemplate = {
        title: "{Name}",
        content: "{Description}"
      }
-     const attributes = {
-       Name: "Emancipation and Freedom Monument",
-       Description: "The monument includes two 12-foot bronze statues of an emancipated man and woman with an infant.  The woman is holding a piece of paper with the date January 1, 1863 which corresponds with the day U.S. president Abraham Lincoln issued the Emancipation Proclamation."
-     }
+     
+   
 
-     // Creating the point
-     const pointGraphic = new Graphic({  
-       geometry: point,  
-       symbol: simpleMarkerSymbol,
-       attributes: attributes,
-       popupTemplate: popupTemplate
-      });
+    
 
-     graphicsLayer.add(pointGraphic); //Adding the point
+   
 
-     // Polyline geometry
-     const polyline = {
-       type: "polyline",
-       paths: [[-77.443404, 37.535252],[-77.443339, 37.534844]]
-     };
-
-     // Polyline symbol
-     const lineSymbol = {
-       type: "simple-line",
-       color: [148, 51, 51],
-       width: 4
-     };
-        
-     // Polyline attributes
-     const lineAtt = {
-       Name: "5th Street Footbridge",
-       Owner: "City of Richmond, Virginia",
-       Length: "150 feet"
-     };
-
-     // Create graphic from the polyline geometry, symbol, etc.
-     const polylineGraphic = new Graphic({  
-       geometry: polyline,  
-       symbol: lineSymbol,
-       attributes: lineAtt,
-       popupTemplate: {
-         title: "{Name}",
-         content: [
-           {
-             type: "fields",
-             fieldInfos: [
-              {
-                fieldName: "Name"
-              },
-              {
-                fieldName: "Owner"
-              },
-              {
-                fieldName: "Length"
-              }
-             ]
-           }
-         ]
-       }
-     });
-
-     view.graphics.add(polylineGraphic);  // Adding the polyline
-
-     // Create polygon geometry
-     const polygon = {
-       type: "polygon",
-       rings: [
-         [-77.441224, 37.534004],
-         [-77.441090, 37.533978],
-         [-77.441124, 37.533866],
-         [-77.441258, 37.533892],   
-       ]
-     };
-
-     // Create polygon symbol
-     const simpleFillSymbol = {
-       type: "simple-fill",
-       color: [220, 60, 60, 0.7],  
-       outline: {
-        color: [255, 255, 255],
-        width: 1
-       }
-     };
-        
-     // Create polygon attributes
-     const polygonAtt = {
-       Name: "Brown's Island Concert Stage",
-       Owner: "City of Richmond, Virginia",
-     };
-
-     // Create graphic from the polygon geometry, symbol, etc.
-     const polygonGraphic = new Graphic({  
-       geometry: polygon,  
-       symbol: simpleFillSymbol,
-       attributes: polygonAtt,
-       popupTemplate: {
-         title: "{Name}",
-         content: [
-           {
-             type: "fields",
-             fieldInfos: [
-              {
-                fieldName: "Name"
-              },
-              {
-                fieldName: "Owner"
-              },
-             ]
-           }
-         ]
-       }
-     });
-
-     view.graphics.add(polygonGraphic); // Adding the polygon
 
      // Expand widget for basemap gallery
      const basemapGalleryExpand = new Expand({
