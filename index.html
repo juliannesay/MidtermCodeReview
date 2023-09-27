@@ -122,16 +122,16 @@
      title: "BMP Facilities"
      }
 
-     // Setting up the storm main line color
+/*      // Setting up the storm main line color
      const StormMainRenderer = {
       "symbol": {
           "color": [0, 128, 0],
-      }}
+      }} */
 
      // Adding the const for the storm mains feature layer
      const stormMainLayer = new FeatureLayer({
      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterMains/FeatureServer",
-     renderer: StormMainRenderer,
+     //renderer: StormMainRenderer,
      });
 
      map.add(stormMainLayer); // Add storm mains to the map
