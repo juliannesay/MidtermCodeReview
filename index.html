@@ -106,7 +106,7 @@
        }
      };
 
-     // Adding the const for the my airports feature layer
+     // Adding the const for the BMP feature layer
      const bmpLayer = new FeatureLayer({
      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/BMP_Facilities/FeatureServer/0",
      outFields: ["Field_Insp"],
@@ -121,6 +121,28 @@
      layer: bmpLayer,
      title: "BMP Facilities"
      }
+
+     // Adding the const for the storm mains feature layer
+     const stormMainLayer = new FeatureLayer({
+     url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterMains/FeatureServer",
+     outFields: ["Field_Insp"],
+     renderer: bmpRenderer, //calling the icon
+     });
+
+     map.add(stormMainLayer); // Add storm mains to the map
+
+     // Set the storm mains point layer's LayerInfo
+     const pointInfosStormMain = {
+     layer: stormMainLayer,
+     title: "Stormwater Mains"
+     }
+
+
+
+
+
+
+
 
      // Create Editor
      const editor = new Editor({
@@ -145,8 +167,7 @@
      // Create the legend
      const legend = new Legend({
      view: view,
-     style: "classic",
-     layerInfos: [pointInfosBMP]
+     layerInfos: [pointInfosBMP, pointInfosStormMain]
      });
 
      // Create the expand legend
@@ -163,13 +184,9 @@
     });  
   </script>
 
-  <!--CSS to make a full screen map and style the legend-->
-  <style>html,  body,  #viewDiv {padding: 0;  margin: 0;  height: 100%;  width: 100%;}
-         div.esri-component.esri-legend.esri-widget.esri-widget--panel { 
-           max-width: 175px;
-           background-color: rgba(227, 236, 236, 0.75);
-         }
-  </style> 
+  <!-- CSS to make a full screen map -->
+  <style>html,  body,  #viewDiv {padding: 0;  margin: 0;  height: 100%;  width: 100%;}</style> 
+
 </head>
 <body>
   <div id="viewDiv"></div> 
