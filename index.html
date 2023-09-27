@@ -26,7 +26,7 @@
      
      // Create the map
      const map = new Map({ 
-     basemap: "arcgis-streets" // Basemap layer service - good basemap for driving
+     basemap: "arcgis-navigation" // Basemap layer service - good basemap for driving
      });
      
      // Create a 2D view
@@ -120,14 +120,18 @@
      title: "BMP Locations"
      }
 
+     // Create Editor
+     const editor = new Editor({
+     view: view,
+     layerInfos: [pointInfosBMP]
+     });
+
      // Create the expand editor
      const editorExpand = new Expand({
-     view: view,
-     expandTooltip: "Expand Editor",
-     collapseTooltip: "Collapse Editor",
-     content: new editor({
-        view: view,
-     })
+       view: view,
+       expandTooltip: "Expand Editor",
+       collapseTooltip: "Collapse Editor",
+       content: editor,
      });
 
      // Add the expand editor widget to the view
