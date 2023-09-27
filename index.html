@@ -26,7 +26,7 @@
      
      // Create the map
      const map = new Map({ 
-     basemap: "arcgis-navigation" // Basemap layer service - good layer for navigating
+     basemap: "arcgis-streets" // Basemap layer service - good basemap for driving
      });
      
      // Create a 2D view
@@ -78,7 +78,7 @@
         "type": "simple",
         "symbol": {
         "type": "picture-marker",
-        "url": "https://justin-alford.github.io/GEOG576-Lab3/outline_connecting_airports_black_24dp.png",
+        "url": "https://justin-alford.github.io/GEOG576-MidtermProject/water_drop_FILL0_wght400_GRAD0_opsz24.png",
         "width": "25px",
         "height": "25px"
         }
@@ -120,14 +120,18 @@
      title: "BMP Locations"
      }
 
-     // Create the editor
-     const editor = new Editor({
+     // Create the expand editor
+     const editorExpand = new Expand({
      view: view,
-     layerInfos: [pointInfosBMP]
+     expandTooltip: "Expand Editor",
+     collapseTooltip: "Collapse Editor",
+     content: new editor({
+        view: view,
+     })
      });
 
-     // Add the editor widget to the view
-     view.ui.add(editor, {
+     // Add the expand editor widget to the view
+     view.ui.add(editorExpand, {
      position: "top-right",
      index: 0
      });
@@ -148,7 +152,7 @@
   <!--CSS to make a full screen map and style the legend-->
   <style>html,  body,  #viewDiv {padding: 0;  margin: 0;  height: 100%;  width: 100%;}
          div.esri-component.esri-legend.esri-widget.esri-widget--panel { 
-           max-width: 185px;
+           max-width: 165px;
            background-color: rgba(227, 236, 236, 0.75);
          }
   </style> 
