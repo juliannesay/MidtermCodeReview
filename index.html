@@ -125,8 +125,6 @@
      // Adding the const for the storm mains feature layer
      const stormMainLayer = new FeatureLayer({
      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterMains/FeatureServer",
-     outFields: ["Field_Insp"],
-     renderer: bmpRenderer, //calling the icon
      });
 
      map.add(stormMainLayer); // Add storm mains to the map
