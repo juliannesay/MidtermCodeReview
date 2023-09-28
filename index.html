@@ -16,10 +16,11 @@
       "esri/widgets/Locate", "esri/widgets/Search", "esri/Graphic", "esri/layers/GraphicsLayer",
       "esri/geometry/Polyline", "esri/geometry/Polygon", "esri/layers/FeatureLayer",
       "esri/renderers/SimpleRenderer", "esri/symbols/PictureMarkerSymbol", "esri/widgets/Editor",
-      "esri/widgets/Legend", "esri/widgets/Expand", "esri/renderers/UniqueValueRenderer"], 
+      "esri/widgets/Legend", "esri/widgets/Expand", "esri/renderers/UniqueValueRenderer",
+      "esri/rest/query", "esri/rest/support/Query"], 
         function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, Graphic, GraphicsLayer,
           Polyline, Polygon, FeatureLayer, SimpleRenderer, PictureMarkerSymbol, Editor, Legend,
-          Expand, UniqueValueRenderer) {   
+          Expand, UniqueValueRenderer, query, Query) {   
    
      // Adding an API key  
      esriConfig.apiKey = "AAPK4fd83155c6f74dbaba989ef8d65a62e0HkzLPHOm66zEOTAE2eQ4meauWP-KHE_Axm9cNMA2Yz9b6Ovb6U5E3Wil66l4KCe_";
@@ -238,12 +239,35 @@
 
   <!-- CSS to make a full screen map -->
   <style>html,  body,  #viewDiv {padding: 0;  margin: 0;  height: 100%;  width: 100%}</style> 
-  
-<h1>BMP Inspections</h1>
+
 </head>
 <body>
   <div id="viewDiv"></div>
   <div id="locateDiv"></div>
+  <div class="esri-widget" id="optionsDiv">
+    <h2>Prominent Peaks in the U.S.</h2>
+    <select class="esri-widget" id="attSelect">
+      <option value="ELEV_ft">Elevation</option>
+      <option value="PROMINENCE_ft" selected>Prominence</option>
+    </select>
+    <select class="esri-widget" id="signSelect">
+      <option value=">">is greater than</option>
+      <option value="<">is less than</option>
+      <option value="=">is equal to</option>
+    </select>
+    <select class="esri-widget" id="valSelect">
+      <option value="1000">1,000 ft</option>
+      <option value="5000">5,000 ft</option>
+      <option value="10000">10,000 ft</option>
+      <option value="15000">15,000 ft</option>
+      <option value="20000">20,000 ft</option>
+    </select>
+    <br />
+    <br />
+    <button class="esri-widget" id="doBtn">Do Query</button> <br />
+    <p><span id="printResults"></span></p>
+  </div>
+
 </body>
 </html>
  
