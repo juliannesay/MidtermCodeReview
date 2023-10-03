@@ -237,13 +237,13 @@
 
      // Server-side filter
      function setFeatureLayerFilter(expression) {
-        featureLayer.definitionExpression = expression;
+        bmpLayer.definitionExpression = expression;
      }
 
-      // Event listener
-      selectFilter.addEventListener('change', function (event) {
+     // Event listener
+     selectFilter.addEventListener('change', function (event) {
         setFeatureLayerFilter(event.target.value);
-      });
+     });
 
 
 
