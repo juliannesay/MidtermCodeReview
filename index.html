@@ -109,6 +109,13 @@
      outFields: ["*"],
      renderer: bmpRenderer, //calling the icon
      labelingInfo: [bmpLabels], //adding the AGOL labels
+     popupTemplate: {
+          title: "BMP (Best Management Practice)",
+          content: "<ul><li>BMP Name: {BMP_Name}</li>" +
+                   "<li>Date Last Inspected: {Date_Last_}</li>" +
+                   "<li>Name of Inspector: {Last_Field}</li>" +
+                   "<li>Needs Field Inspection: {Field_Insp}</li></ul>"
+     },
      });
 
      map.add(bmpLayer); // Add BMP's to the map
