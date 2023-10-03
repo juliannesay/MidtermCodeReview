@@ -108,7 +108,8 @@
      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/BMP_Facilities/FeatureServer/0",
      outFields: ["*"],
      renderer: bmpRenderer, //calling the icon
-     labelingInfo: [bmpLabels] //adding the AGOL labels
+     labelingInfo: [bmpLabels], //adding the AGOL labels
+     definitionExpression: "1=0"
      });
 
      map.add(bmpLayer); // Add BMP's to the map
@@ -212,6 +213,62 @@
      position: "top-right",
      index: 0
      });
+
+
+
+
+
+     // Create a UI with the filter expressions
+     const sqlExpressions = ["Filter BMP data here...", "Field_Insp = 'YES'", "Field_Insp = 'NO'"];
+
+     // UI
+     const selectFilter = document.createElement("select");
+     selectFilter.setAttribute("class", "esri-widget esri-select");
+     selectFilter.setAttribute("style", "width: 250px; font-family: Avenir Next W00; font-size: 1em;");
+
+     sqlExpressions.forEach(function(sql){
+        let option = document.createElement("option");
+        option.value = sql;
+        option.innerHTML = sql;
+        selectFilter.appendChild(option);
+     });
+
+     view.ui.add(selectFilter, "bottom-right"); // Add BMP filter to the map
+
+     // Server-side filter
+     function setFeatureLayerFilter(expression) {
+        featureLayer.definitionExpression = expression;
+     }
+
+      // Event listener
+      selectFilter.addEventListener('change', function (event) {
+        setFeatureLayerFilter(event.target.value);
+      });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
      // Create the legend
      const legend = new Legend({
