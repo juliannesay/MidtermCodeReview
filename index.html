@@ -109,7 +109,6 @@
      outFields: ["*"],
      renderer: bmpRenderer, //calling the icon
      labelingInfo: [bmpLabels], //adding the AGOL labels
-     //definitionExpression: "1=0"
      });
 
      map.add(bmpLayer); // Add BMP's to the map
@@ -214,10 +213,6 @@
      index: 0
      });
 
-
-
-
-
      // Create a UI with the filter expressions
      const sqlExpressions = ["Filter BMP data here...", "Field_Insp = 'YES'", "Field_Insp = 'NO'"];
 
@@ -244,31 +239,6 @@
      selectFilter.addEventListener('change', function (event) {
         setFeatureLayerFilter(event.target.value);
      });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
      // Create the legend
      const legend = new Legend({
