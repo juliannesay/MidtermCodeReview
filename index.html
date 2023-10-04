@@ -16,9 +16,9 @@
       "esri/widgets/Locate", "esri/widgets/Search", "esri/layers/FeatureLayer",
       "esri/renderers/SimpleRenderer", "esri/symbols/PictureMarkerSymbol", "esri/widgets/Editor",
       "esri/widgets/Legend", "esri/widgets/Expand", "esri/renderers/UniqueValueRenderer",
-      "esri/widgets/LayerList"], 
+      "esri/widgets/LayerList", "esri/popup/content/TextContent"], 
         function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, FeatureLayer, SimpleRenderer, PictureMarkerSymbol, Editor, Legend,
-          Expand, UniqueValueRenderer, LayerList) {   
+          Expand, UniqueValueRenderer, LayerList, TextContent) {   
    
      // Adding an API key  
      esriConfig.apiKey = "AAPK4fd83155c6f74dbaba989ef8d65a62e0HkzLPHOm66zEOTAE2eQ4meauWP-KHE_Axm9cNMA2Yz9b6Ovb6U5E3Wil66l4KCe_";
@@ -45,6 +45,22 @@
          view: view,
        })
      });
+
+
+
+     const textElement = new TextContent();
+       textElement.text = "BMP Inspections - Henrico County, Virginia",
+    
+
+      
+
+     view.ui.add(textElement, "top-center"); // Add title to map
+
+
+
+
+
+
 
      // Add the basemap gallery to the view
      view.ui.add(basemapGalleryExpand, {
@@ -318,17 +334,15 @@
     #viewDiv {padding: 0;  margin: 0;  height: 100%;  width: 100%}
   </style> 
 
-  <style>
+ <!--  <style>
   h1 {
     text-align: center;
   }
-  </style>
+  </style> -->
 
 </head>
 <body>
-  <div id="viewDiv">
-    <h1>BMP Inspections - Henrico County, Virginia</h1>
-  </div>
+  <div id="viewDiv"></div>
 </body>
 </html>
  
