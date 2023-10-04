@@ -33,7 +33,10 @@
      map: map,
      center: [-77.487206, 37.654347], // Longitude, latitude of Public Works where employees will start from
      zoom: 16, // Zoom level
-     container: "viewDiv" // Div element
+     container: "viewDiv", // Div element
+     background: {
+        text: "BMP Inspections - Henrico County, Virginia"
+     }
      });
 
      // Expand widget for basemap gallery
@@ -45,22 +48,6 @@
          view: view,
        })
      });
-
-
-
-     const textElement = new TextContent();
-       textElement.text = "BMP Inspections - Henrico County, Virginia",
-    
-
-      
-
-     view.ui.add(textElement, "top-center"); // Add title to map
-
-
-
-
-
-
 
      // Add the basemap gallery to the view
      view.ui.add(basemapGalleryExpand, {
