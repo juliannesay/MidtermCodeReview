@@ -15,9 +15,10 @@
     require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/BasemapGallery", 
       "esri/widgets/Locate", "esri/widgets/Search", "esri/layers/FeatureLayer",
       "esri/renderers/SimpleRenderer", "esri/symbols/PictureMarkerSymbol", "esri/widgets/Editor",
-      "esri/widgets/Legend", "esri/widgets/Expand", "esri/renderers/UniqueValueRenderer"], 
+      "esri/widgets/Legend", "esri/widgets/Expand", "esri/renderers/UniqueValueRenderer",
+      "esri/widgets/LayerList"], 
         function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, FeatureLayer, SimpleRenderer, PictureMarkerSymbol, Editor, Legend,
-          Expand, UniqueValueRenderer) {   
+          Expand, UniqueValueRenderer, LayerList) {   
    
      // Adding an API key  
      esriConfig.apiKey = "AAPK4fd83155c6f74dbaba989ef8d65a62e0HkzLPHOm66zEOTAE2eQ4meauWP-KHE_Axm9cNMA2Yz9b6Ovb6U5E3Wil66l4KCe_";
@@ -48,6 +49,7 @@
      // Add the basemap gallery to the view
      view.ui.add(basemapGalleryExpand, {
        position: "top-right",
+       index: 0
      });
      
      // Create a Locate widget
@@ -272,6 +274,52 @@
         setFeatureLayerFilter(event.target.value);
      });
 
+
+
+
+
+     // Add table of contents to turn on/off layers
+     const layerList = new LayerList({
+     view: view,
+     //icon: "map-contents"
+     });
+
+     // Create expand for layer list
+     const layerListexpand = new Expand({
+     view: view,
+     content: layerList,
+     //icon: "map-contents"
+     });
+
+     // Add layer list to view
+     view.ui.add(layerListexpand, {
+       position: "top-right",
+       index: 2
+     })  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
      // Create the legend
      const legend = new Legend({
      view: view,
@@ -286,8 +334,7 @@
      content: legend,
      });
 
-     // Add legend to the view
-     view.ui.add(legendExpand, "bottom-left");
+     view.ui.add(legendExpand, "bottom-left");  // Add legend to the view
     });  
   </script>
 
