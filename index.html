@@ -87,61 +87,24 @@
 
      // Const to make the BMP labels
      const bmpLabels = {
-        type: "unique-value",
-        field: "Priority",
-        uniqueValuesInfos: [
-          {
-            value: "VERY HIGH",
-            color: "#FFFFFF",
-            haloColor: "#e83a133",
-            haloSize: "3px",
-            labelPlacement: "above-center",
-            font: {
-              size: "12px",
-              family: "Noto Sans",
-              style: "italic",
-              weight: "normal"
-            },
-          }, {
-            value: "HIGH",
-            color: "#FFFFFF",
-            haloColor: "#c76550",
-            haloSize: "3px",
-            labelPlacement: "above-center",
-            font: {
-              size: "12px",
-              family: "Noto Sans",
-              style: "italic",
-              weight: "normal"
-            },
-          }, {
-            value: "MEDIUM",
-            color: "#FFFFFF",
-            haloColor: "#ebe423",
-            haloSize: "3px",
-            labelPlacement: "above-center",
-            font: {
-              size: "12px",
-              family: "Noto Sans",
-              style: "italic",
-              weight: "normal"
-            },
-          }, {
-            value: "LOW",
-            color: "#FFFFFF",
-            haloColor: "#19e60e",
-            haloSize: "3px",
-            labelPlacement: "above-center",
-            font: {
-              size: "12px",
-              family: "Noto Sans",
-              style: "italic",
-              weight: "normal"
-            },
-          }
-        ]
-     }
-     
+        symbol: {
+        type: "text",
+        color: "#FFFFFF",
+        haloColor: "#94b3e3",
+        haloSize: "3px",
+        font: {
+           size: "12px",
+           family: "Noto Sans",
+           style: "italic",
+           weight: "normal"
+        },
+       },
+       labelPlacement: "above-center",
+       labelExpressionInfo: {
+       expression: "$feature.Priority"
+       }
+     };
+
      // Adding the const for the BMP feature layer
      const bmpLayer = new FeatureLayer({
      url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/BMP_Facilities/FeatureServer/0",
