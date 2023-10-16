@@ -97,7 +97,13 @@
            family: "Noto Sans",
            style: "italic",
            weight: "normal"
-        }
+        },
+        field: "Priority",
+        uniquevaluesInfos:[{
+          value: "VERY HIGH",
+          haloColor: "#94b3e3",
+          haloSize: "30px",
+        }]
        },
        labelPlacement: "above-center",
        labelExpressionInfo: {
@@ -248,7 +254,8 @@
      });
 
      // Create a UI with the filter expressions
-     const sqlExpressions = ["Filter BMP data here...", "Inspection = 'YES'", "Inspection = 'NO'"];
+     const sqlExpressions = ["Filter BMP data here...", "Inspection = 'YES'", "Inspection = 'NO'",
+        "Priority = 'LOW'", "Priority = 'MEDIUM'", "Priority = 'HIGH'", "Priority = 'VERY HIGH'"];
 
      // UI
      const selectFilter = document.createElement("select");
