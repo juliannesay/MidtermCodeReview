@@ -91,7 +91,7 @@
         type: "text",
         color: "#FFFFFF",
         haloColor: "#94b3e3",
-        haloSize: "30px",
+        haloSize: "3px",
         font: {
            size: "12px",
            family: "Noto Sans",
@@ -101,7 +101,8 @@
        },
        labelPlacement: "above-center",
        labelExpressionInfo: {
-       expression: "$feature.Priority"
+       expression: "($feature.Priority, 'VERY HIGH')",
+          haloColor: "#e83a133"
        }
      };
 
