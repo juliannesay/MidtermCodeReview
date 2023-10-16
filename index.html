@@ -103,7 +103,6 @@
        labelExpressionInfo: {
        expression: "$feature.Priority"
        },
-       where: "Priority = 'VERY HIGH'"
      };
 
      // Adding the const for the BMP feature layer
@@ -311,6 +310,35 @@
 
      view.ui.add(legendExpand, "bottom-left");  // Add legend to the view
     });  
+
+     // Displays instructions to the user for understanding the app
+     // And places them in an Expand widget
+     const Instructions = document.createElement("div");
+     Instructions.style.padding = "10px";
+     Instructions.style.backgroundColor = "white";
+     Instructions.style.width = "300px";
+     Instructions.innerText = [
+          "This app shows BMP Facilities in Henrico County, VA",
+          "and indicates the priority level of the required BMP inspections."
+     ].join(" ");
+
+     const instructionsExpand = new Expand({
+     expandIcon: "question",
+     expandTooltip: "How to use this sample",
+     expanded: true,
+     view: view,
+     content: Instructions
+     });
+
+     view.ui.add(instructionsExpand, "top-left");  // Add Instructions to the view
+
+     // Hide the instructions when the user starts interacting with the app
+     reactiveUtils
+       .whenOnce(() => view.interacting)
+       .then(() => {
+          instructionsExpand.expanded = false;
+       });
+       
   </script>
 
   <!-- CSS to make a full screen map -->
