@@ -114,10 +114,10 @@
         popupTemplate: {
             title: "BMP (Best Management Practice)",
             content: "<p>Attribute Information is incomplete and may show missing values.</p>" +
-                   "<ul><li>BMP Name: {BMP_Name}</li>" +
-                   "<li>Date Last Inspected: {Date_Last_}</li>" +
-                   "<li>Name of Inspector: {Last_Field}</li>" +
-                   "<li>Needs Field Inspection: {Field_Insp}</li></ul>"
+                     "<ul><li>BMP Name: {BMP_Name}</li>" +
+                     "<li>Date Last Inspected: {Date_Last_}</li>" +
+                     "<li>Name of Inspector: {Last_Field}</li>" +
+                     "<li>Needs Field Inspection: {Field_Insp}</li></ul>"
         },
      });
 
@@ -147,10 +147,10 @@
         popupTemplate: {
             title: "Stormwater Main",
             content: "<p>Attribute Information is incomplete and may show missing values.</p>" +
-                   "<ul><li>Pipe Size (inches): {Height_Inc}</li>" +
-                   "<li>Length (feet): {Length_Fee}</li>" +
-                   "<li>Date Field Observed: {Date_Field}</li>" +
-                   "<li>Field Observor Initials: {Field_Ob_1}</li></ul>"
+                     "<ul><li>Pipe Size (inches): {Height_Inc}</li>" +
+                     "<li>Length (feet): {Length_Fee}</li>" +
+                     "<li>Date Field Observed: {Date_Field}</li>" +
+                     "<li>Field Observor Initials: {Field_Ob_1}</li></ul>"
         },
      });
 
@@ -175,16 +175,16 @@
 
      // Adding the const for the storm manhole feature layer
      const manholeLayer = new FeatureLayer({
-        minScale: 6000,
+        minScale: 7000,
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterManholes/FeatureServer",
         renderer: manholeRenderer, //calling the icon
         popupTemplate: {
             title: "Stormwater Manhole",
             content: "<p>Attribute Information is incomplete and may show missing values.</p>" +
-                   "<ul><li>Rim Elevation: {Elevation_}</li>" +
-                   "<li>Bottom of Structure Elevation: {Elevation1}</li>" +
-                   "<li>Date Field Observed: {Date_Field}</li>" +
-                   "<li>Field Observor Initials: {Field_Ob_1}</li></ul>"
+                     "<ul><li>Rim Elevation: {Elevation_}</li>" +
+                     "<li>Bottom of Structure Elevation: {Elevation1}</li>" +
+                     "<li>Date Field Observed: {Date_Field}</li>" +
+                     "<li>Field Observor Initials: {Field_Ob_1}</li></ul>"
         },
      });
 
@@ -209,16 +209,16 @@
 
      // Adding the const for the storm inlet feature layer
      const inletLayer = new FeatureLayer({
-        minScale: 6000,
+        minScale: 7000,
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterInlets/FeatureServer",
         renderer: inletRenderer, //calling the icon
         popupTemplate: {
             title: "Stormwater Inlet",
             content: "<p>Attribute Information is incomplete and may show missing values.</p>" +
-                   "<ul><li>Rim Elevation: {Elevation_}</li>" +
-                   "<li>Bottom of Structure Elevation: {Elevation1}</li>" +
-                   "<li>Date Field Observed: {Date_Field}</li>" +
-                   "<li>Field Observor Initials: {Field_Ob_1}</li></ul>"
+                     "<ul><li>Rim Elevation: {Elevation_}</li>" +
+                     "<li>Bottom of Structure Elevation: {Elevation1}</li>" +
+                     "<li>Date Field Observed: {Date_Field}</li>" +
+                     "<li>Field Observor Initials: {Field_Ob_1}</li></ul>"
         },
      });
 
