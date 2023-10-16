@@ -101,8 +101,9 @@
        },
        labelPlacement: "above-center",
        labelExpressionInfo: {
-       expression: "$feature.Priority, 'VERY HIGH'"
-       }
+       expression: "$feature.Priority"
+       },
+       where: "Priority = 'VERY HIGH'"
      };
 
      // Adding the const for the BMP feature layer
