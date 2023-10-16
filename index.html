@@ -294,6 +294,33 @@
        index: 1
      })  
 
+      // Create instructions with Expand widget
+      const about = document.createElement("div");
+      about.id = "about";
+      about.innerHTML =
+        "test"
+      view.ui.add(new Expand({
+          expandIcon: "question",
+          expandTooltip: "Read Info",
+          collapseTooltip: "Collapse Info",
+          view: view,
+          content: about,
+        }), "top-left"
+      );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
      // Create the legend
      const legend = new Legend({
      view: view,
@@ -310,35 +337,6 @@
 
      view.ui.add(legendExpand, "bottom-left");  // Add legend to the view
     });  
-
-     // Displays instructions to the user for understanding the app
-     // And places them in an Expand widget
-     const Instructions = document.createElement("div");
-     Instructions.style.padding = "10px";
-     Instructions.style.backgroundColor = "white";
-     Instructions.style.width = "300px";
-     Instructions.innerText = [
-          "This app shows BMP Facilities in Henrico County, VA",
-          "and indicates the priority level of the required BMP inspections."
-     ].join(" ");
-
-     const instructionsExpand = new Expand({
-     expandIcon: "question",
-     expandTooltip: "How to use this App",
-     collapseTooltip: "Collapse Info",
-     expanded: true,
-     view: view,
-     content: Instructions
-     });
-
-     view.ui.add(instructionsExpand, "top-left");  // Add Instructions to the view
-
-    /*  // Hide the instructions when the user starts interacting with the app
-     reactiveUtils
-       .whenOnce(() => view.interacting)
-       .then(() => {
-          instructionsExpand.expanded = false;
-       }); */
 
   </script>
 
