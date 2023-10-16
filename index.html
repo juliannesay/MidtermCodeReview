@@ -296,7 +296,7 @@
 
       // Create instructions with Expand widget
       const about = document.createElement("div");
-      about.id = "about";
+      //about.id = "about";
       about.innerHTML =
         "This App shows the BMP Facilities in Henrico County, VA<br>",
         "as well as the priority level of each BMP inspection."
@@ -307,9 +307,8 @@
           expandTooltip: "Read Info",
           collapseTooltip: "Collapse Info",
           view: view,
-          content: about,
-          position: "top-left"
-      }), 
+          content: about, 
+      }), "top-left"
       );
 
      // Create the legend
