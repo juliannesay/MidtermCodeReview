@@ -141,7 +141,7 @@
 
      // Adding the const for the storm mains feature layer
      const stormMainLayer = new FeatureLayer({
-        minscale: 3000,
+        minscale: 4500,
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterMains/FeatureServer",
         renderer: StormMainRenderer,
         popupTemplate: {
@@ -175,7 +175,7 @@
 
      // Adding the const for the storm manhole feature layer
      const manholeLayer = new FeatureLayer({
-        minScale: 5000,
+        minScale: 6000,
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterManholes/FeatureServer",
         renderer: manholeRenderer, //calling the icon
         popupTemplate: {
@@ -209,7 +209,7 @@
 
      // Adding the const for the storm inlet feature layer
      const inletLayer = new FeatureLayer({
-        minScale: 5000,
+        minScale: 6000,
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterInlets/FeatureServer",
         renderer: inletRenderer, //calling the icon
         popupTemplate: {
