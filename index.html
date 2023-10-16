@@ -174,7 +174,7 @@
 
      // Adding the const for the storm manhole feature layer
      const manholeLayer = new FeatureLayer({
-        minscale: 20000,
+        minscale: 10000,
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterManholes/FeatureServer",
         renderer: manholeRenderer, //calling the icon
         popupTemplate: {
@@ -197,28 +197,28 @@
 
      // Setting up the storm inlet icon
      const inletRenderer = {
-         "type": "simple",
-         "symbol": {
-               "type": "picture-marker",
-               "url": "https://justin-alford.github.io/GEOG576-MidtermProject/square.png",
-               "width": "8px",
-               "height": "8px"
+        "type": "simple",
+        "symbol": {
+            "type": "picture-marker",
+            "url": "https://justin-alford.github.io/GEOG576-MidtermProject/square.png",
+            "width": "8px",
+            "height": "8px"
         }
      }
 
      // Adding the const for the storm inlet feature layer
      const inletLayer = new FeatureLayer({
-         minscale: 20000,
-         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterInlets/FeatureServer",
-         renderer: inletRenderer, //calling the icon
-         popupTemplate: {
-               title: "Stormwater Inlet",
-               content: "<p>Attribute Information is incomplete and may show missing values.</p>" +
+        minscale: 10000,
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterInlets/FeatureServer",
+        renderer: inletRenderer, //calling the icon
+        popupTemplate: {
+            title: "Stormwater Inlet",
+            content: "<p>Attribute Information is incomplete and may show missing values.</p>" +
                    "<ul><li>Rim Elevation: {Elevation_}</li>" +
                    "<li>Bottom of Structure Elevation: {Elevation1}</li>" +
                    "<li>Date Field Observed: {Date_Field}</li>" +
                    "<li>Field Observor Initials: {Field_Ob_1}</li></ul>"
-         },
+        },
      });
 
      map.add(inletLayer); // Add storm inlets to the map
