@@ -101,7 +101,7 @@
        },
        labelPlacement: "above-center",
        labelExpressionInfo: {
-       expression: "$feature.Field_Insp"
+       expression: "$feature.Priority"
        }
      };
 
@@ -128,79 +128,6 @@
      layer: bmpLayer,
      title: "BMP Facilities"
      }
-
-
-
-
-  
-
-      
-
-
-
-
-          // Adding the const for the BMP feature layer
-          const BMPheatmap = new FeatureLayer({
-          url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/BMP_Facilities/FeatureServer/0",
-          outfields: ["*"],
-          renderer:{
-            type: "heatmap",
-            field: "Date_Last_",
-            colorStops: [
-            { color: "rgba(63, 40, 102, 0)", ratio: 0 },
-            { color: "#472b77", ratio: 0.083 },
-            { color: "#4e2d87", ratio: 0.166 },
-            { color: "#563098", ratio: 0.249 },
-            { color: "#5d32a8", ratio: 0.332 },
-            { color: "#6735be", ratio: 0.415 },
-            { color: "#7139d4", ratio: 0.498 },
-            { color: "#7b3ce9", ratio: 0.581 },
-            { color: "#853fff", ratio: 0.664 },
-            { color: "#a46fbf", ratio: 0.747 },
-            { color: "#c29f80", ratio: 0.83 },
-            { color: "#e0cf40", ratio: 0.913 },
-            { color: "#ffff00", ratio: 1 }
-          ],
-          radius: 18,
-          maxDensity: 0.01,
-          minDensity: 0
-          }
-         });
-
-         map.add(BMPheatmap); // Add BMP heatmap to the map
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
      // Setting up the storm main color
      const StormMainRenderer = {
@@ -321,7 +248,7 @@
      });
 
      // Create a UI with the filter expressions
-     const sqlExpressions = ["Filter BMP data here...", "Field_Insp = 'YES'", "Field_Insp = 'NO'"];
+     const sqlExpressions = ["Filter BMP data here...", "Inspection = 'YES'", "Inspection = 'NO'"];
 
      // UI
      const selectFilter = document.createElement("select");
