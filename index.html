@@ -13,65 +13,65 @@
   <!-- Loading the modules -->
   <script>  
     require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/BasemapGallery", 
-      "esri/widgets/Locate", "esri/widgets/Search", "esri/layers/FeatureLayer",
-      "esri/renderers/SimpleRenderer", "esri/symbols/PictureMarkerSymbol", "esri/widgets/Editor",
-      "esri/widgets/Legend", "esri/widgets/Expand", "esri/renderers/UniqueValueRenderer",
-      "esri/widgets/LayerList"], 
-        function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, FeatureLayer, SimpleRenderer,
-        PictureMarkerSymbol, Editor, Legend, Expand, UniqueValueRenderer, LayerList) {   
+        "esri/widgets/Locate", "esri/widgets/Search", "esri/layers/FeatureLayer",
+        "esri/renderers/SimpleRenderer", "esri/symbols/PictureMarkerSymbol", "esri/widgets/Editor",
+        "esri/widgets/Legend", "esri/widgets/Expand", "esri/renderers/UniqueValueRenderer",
+        "esri/widgets/LayerList"], 
+            function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, FeatureLayer, SimpleRenderer,
+                PictureMarkerSymbol, Editor, Legend, Expand, UniqueValueRenderer, LayerList) {   
    
      // Adding an API key  
      esriConfig.apiKey = "AAPK4fd83155c6f74dbaba989ef8d65a62e0HkzLPHOm66zEOTAE2eQ4meauWP-KHE_Axm9cNMA2Yz9b6Ovb6U5E3Wil66l4KCe_";
      
      // Create the map
      const map = new Map({ 
-     basemap: "arcgis-navigation", // Basemap layer service - good basemap for driving
+        basemap: "arcgis-navigation", // Basemap layer service - good basemap for driving
      });
     
      // Create a 2D view
      const view = new MapView({
-     map: map,
-     center: [-77.487206, 37.654347], // Longitude, latitude of Public Works where employees will start from
-     zoom: 16, // Zoom level
-     container: "viewDiv", // Div element
+        map: map,
+        center: [-77.487206, 37.654347], // Longitude, latitude of Public Works where employees will start from
+        zoom: 16, // Zoom level
+        container: "viewDiv", // Div element
      });
 
      // Expand widget for basemap gallery
      const basemapGalleryExpand = new Expand({
-       view: view,
-       expandTooltip: "Expand Basemaps",
-       collapseTooltip: "Collapse Basemaps",
-       content: new BasemapGallery({
-         view: view,
-       })
+        view: view,
+        expandTooltip: "Expand Basemaps",
+        collapseTooltip: "Collapse Basemaps",
+        content: new BasemapGallery({
+        view: view,
+        })
      });
 
      // Add the basemap gallery to the view
      view.ui.add(basemapGalleryExpand, {
-       position: "top-right",
-       index: 0
+        position: "top-right",
+        index: 0
      });
      
      // Create a Locate widget
      const locate = new Locate({
-       view: view,
+        view: view,
      });
 
      // Add the locate widget to the view
      view.ui.add(locate, {
-       position: "top-left",
-       index: 2
+        position: "top-left",
+        index: 2
      });
 
      // Create a search widget
      const searchWidget = new Search({
-       view: view,
+        view: view,
      });
 
      // Adds the search widget to the view
      view.ui.add(searchWidget, {
-       position: "top-left",
-       index: 0
+        position: "top-left",
+        index: 0
      });
 
      // Setting up the BMP icon
@@ -88,45 +88,45 @@
      // Const to make the BMP labels
      const bmpLabels = {
         symbol: {
-        type: "text",
+        type: "text", 
         color: "#FFFFFF",
         haloColor: "#94b3e3",
         haloSize: "3px",
         font: {
-           size: "12px",
-           family: "Noto Sans",
-           style: "italic",
-           weight: "normal"
+            size: "12px",
+            family: "Noto Sans",
+            style: "italic",
+            weight: "normal"
         },
-       },
-       labelPlacement: "above-center",
-       labelExpressionInfo: {
-       expression: "$feature.Priority"
-       },
+        },
+        labelPlacement: "above-center",
+        labelExpressionInfo: {
+        expression: "$feature.Priority"
+        },
      };
 
      // Adding the const for the BMP feature layer
      const bmpLayer = new FeatureLayer({
-     url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/BMP_Facilities/FeatureServer/0",
-     outFields: ["*"],
-     renderer: bmpRenderer, //calling the icon
-     labelingInfo: [bmpLabels], //adding the AGOL labels
-     popupTemplate: {
-          title: "BMP (Best Management Practice)",
-          content: "<p>Attribute Information is incomplete and may show missing values.</p>" +
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/BMP_Facilities/FeatureServer/0",
+        outFields: ["*"],
+        renderer: bmpRenderer, //calling the icon
+        labelingInfo: [bmpLabels], //adding the AGOL labels
+        popupTemplate: {
+            title: "BMP (Best Management Practice)",
+            content: "<p>Attribute Information is incomplete and may show missing values.</p>" +
                    "<ul><li>BMP Name: {BMP_Name}</li>" +
                    "<li>Date Last Inspected: {Date_Last_}</li>" +
                    "<li>Name of Inspector: {Last_Field}</li>" +
                    "<li>Needs Field Inspection: {Field_Insp}</li></ul>"
-     },
+        },
      });
 
      map.add(bmpLayer); // Add BMP's to the map
 
      // Set the BMP point layer's LayerInfo
      const pointInfosBMP = {
-     layer: bmpLayer,
-     title: "BMP Facilities"
+        layer: bmpLayer,
+        title: "BMP Facilities"
      }
 
      // Setting up the storm main color
@@ -141,110 +141,111 @@
 
      // Adding the const for the storm mains feature layer
      const stormMainLayer = new FeatureLayer({
-     url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterMains/FeatureServer",
-     renderer: StormMainRenderer,
-     popupTemplate: {
-          title: "Stormwater Main",
-          content: "<p>Attribute Information is incomplete and may show missing values.</p>" +
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterMains/FeatureServer",
+        renderer: StormMainRenderer,
+        popupTemplate: {
+            title: "Stormwater Main",
+            content: "<p>Attribute Information is incomplete and may show missing values.</p>" +
                    "<ul><li>Pipe Size (inches): {Height_Inc}</li>" +
                    "<li>Length (feet): {Length_Fee}</li>" +
                    "<li>Date Field Observed: {Date_Field}</li>" +
                    "<li>Field Observor Initials: {Field_Ob_1}</li></ul>"
-     },
+        },
      });
 
      map.add(stormMainLayer); // Add storm mains to the map
 
      // Set the storm mains point layers LayerInfo
      const pointInfosStormMain = {
-     layer: stormMainLayer,
-     title: "Stormwater Mains"
+        layer: stormMainLayer,
+        title: "Stormwater Mains"
      }
 
      // Setting up the storm manholes icon
      const manholeRenderer = {
-     "type": "simple",
-     "symbol": {
-     "type": "picture-marker",
-     "url": "https://justin-alford.github.io/GEOG576-MidtermProject/manhole.png",
-     "width": "10px",
-     "height": "10px"
-     }
+        "type": "simple",
+        "symbol": {
+            "type": "picture-marker",
+            "url": "https://justin-alford.github.io/GEOG576-MidtermProject/manhole.png",
+            "width": "10px",
+            "height": "10px"
+        }
      }
 
      // Adding the const for the storm manhole feature layer
      const manholeLayer = new FeatureLayer({
-     url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterManholes/FeatureServer",
-     renderer: manholeRenderer, //calling the icon
-     popupTemplate: {
-          title: "Stormwater Manhole",
-          content: "<p>Attribute Information is incomplete and may show missing values.</p>" +
+        minscale: 2000000,
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterManholes/FeatureServer",
+        renderer: manholeRenderer, //calling the icon
+        popupTemplate: {
+            title: "Stormwater Manhole",
+            content: "<p>Attribute Information is incomplete and may show missing values.</p>" +
                    "<ul><li>Rim Elevation: {Elevation_}</li>" +
                    "<li>Bottom of Structure Elevation: {Elevation1}</li>" +
                    "<li>Date Field Observed: {Date_Field}</li>" +
                    "<li>Field Observor Initials: {Field_Ob_1}</li></ul>"
-     },
+        },
      });
 
      map.add(manholeLayer); // Add storm manholes to the map
 
      // Set the storm manhole point layers LayerInfo
      const pointInfosManhole = {
-     layer: manholeLayer,
-     title: "Stormwater Manholes"
+        layer: manholeLayer,
+        title: "Stormwater Manholes"
      }
 
      // Setting up the storm inlet icon
      const inletRenderer = {
-     "type": "simple",
-     "symbol": {
-     "type": "picture-marker",
-     "url": "https://justin-alford.github.io/GEOG576-MidtermProject/square.png",
-     "width": "8px",
-     "height": "8px"
-     }
+        "type": "simple",
+        "symbol": {
+            "type": "picture-marker",
+            "url": "https://justin-alford.github.io/GEOG576-MidtermProject/square.png",
+            "width": "8px",
+            "height": "8px"
+        }
      }
 
      // Adding the const for the storm inlet feature layer
      const inletLayer = new FeatureLayer({
-     url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterInlets/FeatureServer",
-     renderer: inletRenderer, //calling the icon
-     popupTemplate: {
-          title: "Stormwater Inlet",
-          content: "<p>Attribute Information is incomplete and may show missing values.</p>" +
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/StormWaterInlets/FeatureServer",
+        renderer: inletRenderer, //calling the icon
+        popupTemplate: {
+            title: "Stormwater Inlet",
+            content: "<p>Attribute Information is incomplete and may show missing values.</p>" +
                    "<ul><li>Rim Elevation: {Elevation_}</li>" +
                    "<li>Bottom of Structure Elevation: {Elevation1}</li>" +
                    "<li>Date Field Observed: {Date_Field}</li>" +
                    "<li>Field Observor Initials: {Field_Ob_1}</li></ul>"
-     },
+        },
      });
 
      map.add(inletLayer); // Add storm inlets to the map
 
      // Set the storm inlet point layers LayerInfo
      const pointInfosInlet = {
-     layer: inletLayer,
-     title: "Stormwater Inlets"
+        layer: inletLayer,
+        title: "Stormwater Inlets"
      }
 
      // Create Editor
      const editor = new Editor({
-     view: view,
-     layerInfos: [pointInfosBMP]
+        view: view,
+        layerInfos: [pointInfosBMP]
      });
 
      // Create the expand editor
      const editorExpand = new Expand({
-       view: view,
-       expandTooltip: "Expand Editor",
-       collapseTooltip: "Collapse Editor",
-       content: editor,
+        view: view,
+        expandTooltip: "Expand Editor",
+        collapseTooltip: "Collapse Editor",
+        content: editor,
      });
 
      // Add the expand editor widget to the view
      view.ui.add(editorExpand, {
-     position: "top-right",
-     index: 1
+        position: "top-right",
+        index: 1
      });
 
      // Create a UI with the filter expressions
@@ -253,14 +254,14 @@
 
      // UI
      const selectFilter = document.createElement("select");
-     selectFilter.setAttribute("class", "esri-widget esri-select");
-     selectFilter.setAttribute("style", "width: 250px; font-family: Avenir Next W00; font-size: 1em;");
+        selectFilter.setAttribute("class", "esri-widget esri-select");
+        selectFilter.setAttribute("style", "width: 250px; font-family: Avenir Next W00; font-size: 1em;");
 
      sqlExpressions.forEach(function(sql){
         let option = document.createElement("option");
-        option.value = sql;
-        option.innerHTML = sql;
-        selectFilter.appendChild(option);
+            option.value = sql;
+            option.innerHTML = sql;
+            selectFilter.appendChild(option);
      });
 
      view.ui.add(selectFilter, "bottom-right"); // Add BMP filter to the map
@@ -277,70 +278,69 @@
 
      // Add table of contents to turn on/off layers
      const layerList = new LayerList({
-     view: view,
+        view: view,
      });
 
      // Create expand for layer list
      const layerListexpand = new Expand({
-     view: view,
-     content: layerList,
-     expandTooltip: "Expand Table of Contents",
-     collapseTooltip: "Collapse Table of Contents",
+        view: view,
+        content: layerList,
+        expandTooltip: "Expand Table of Contents",
+        collapseTooltip: "Collapse Table of Contents",
      });
 
      // Add layer list to view
      view.ui.add(layerListexpand, {
-       position: "top-right",
-       index: 1
+        position: "top-right",
+        index: 1
      })  
 
-      // Create instructions with Expand widget
-      const instructions = document.createElement("div");
-      instructions.style.padding = "10px";
-      instructions.style.backgroundColor = "white";
-      instructions.style.width = "300px";
-      instructions.innerText =
-        "This App shows the BMP Facilities in Henrico County, VA as well as the priority level of each BMP inspection."
+     // Create instructions with Expand widget
+     const instructions = document.createElement("div");
+        instructions.style.padding = "10px";
+        instructions.style.backgroundColor = "white";
+        instructions.style.width = "300px";
+        instructions.innerText = "This App shows the BMP Facilities in Henrico County, VA as well as the priority level of each BMP inspection."
 
-      // Add instructions to view
-      view.ui.add(new Expand({
-          expandIcon: "question",
-          expandTooltip: "Read Info",
-          collapseTooltip: "Collapse Info",
-          view: view,
-          content: instructions, 
-      }), "top-left"
-      );
+     // Add instructions to view
+     view.ui.add(new Expand({
+        expandIcon: "question",
+        expandTooltip: "Read Info",
+        collapseTooltip: "Collapse Info",
+        view: view,
+        content: instructions, 
+     }), "top-left"
+     );
 
      // Create the legend
      const legend = new Legend({
-     view: view,
-     layerInfos: [pointInfosInlet, pointInfosManhole, pointInfosStormMain, pointInfosBMP]
+        view: view,
+        layerInfos: [pointInfosInlet, pointInfosManhole, pointInfosStormMain, pointInfosBMP]
      });
 
      // Create the expand legend
      const legendExpand = new Expand({
-     view: view,
-     expandTooltip: "Expand Legend",
-     collapseTooltip: "Collapse Legend",
-     content: legend,
+        view: view,
+        expandTooltip: "Expand Legend",
+        collapseTooltip: "Collapse Legend",
+        content: legend,
      });
 
      view.ui.add(legendExpand, "bottom-left");  // Add legend to the view
-    });  
 
+    });  
   </script>
 
   <!-- CSS to make a full screen map -->
   <style>
-    html,
-    body,  
-    #viewDiv {padding: 0;  margin: 0;  height: 100%;  width: 100%}
+      html,
+      body,  
+      #viewDiv {padding: 0;  margin: 0;  height: 100%;  width: 100%}
   </style> 
 
 </head>
 <body>
-  <div id="viewDiv"></div>
+    <div id="viewDiv"></div>
 </body>
 </html>
  
