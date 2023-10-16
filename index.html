@@ -16,9 +16,9 @@
       "esri/widgets/Locate", "esri/widgets/Search", "esri/layers/FeatureLayer",
       "esri/renderers/SimpleRenderer", "esri/symbols/PictureMarkerSymbol", "esri/widgets/Editor",
       "esri/widgets/Legend", "esri/widgets/Expand", "esri/renderers/UniqueValueRenderer",
-      "esri/widgets/LayerList", "esri/core/reactiveUtils"], 
+      "esri/widgets/LayerList"], 
         function(esriConfig, Map, MapView, BasemapGallery, Locate, Search, FeatureLayer, SimpleRenderer,
-        PictureMarkerSymbol, Editor, Legend, Expand, UniqueValueRenderer, LayerList, reactiveUtils) {   
+        PictureMarkerSymbol, Editor, Legend, Expand, UniqueValueRenderer, LayerList) {   
    
      // Adding an API key  
      esriConfig.apiKey = "AAPK4fd83155c6f74dbaba989ef8d65a62e0HkzLPHOm66zEOTAE2eQ4meauWP-KHE_Axm9cNMA2Yz9b6Ovb6U5E3Wil66l4KCe_";
@@ -295,11 +295,11 @@
      })  
 
       // Create instructions with Expand widget
-      const about = document.createElement("div");
-      about.style.padding = "10px";
-      about.style.backgroundColor = "white";
-      about.style.width = "300px";
-      about.innerText =
+      const instructions = document.createElement("div");
+      instructions.style.padding = "10px";
+      instructions.style.backgroundColor = "white";
+      instructions.style.width = "300px";
+      instructions.innerText =
         "This App shows the BMP Facilities in Henrico County, VA as well as the priority level of each BMP inspection."
 
       // Add instructions to view
@@ -308,7 +308,7 @@
           expandTooltip: "Read Info",
           collapseTooltip: "Collapse Info",
           view: view,
-          content: about, 
+          content: instructions, 
       }), "top-left"
       );
 
