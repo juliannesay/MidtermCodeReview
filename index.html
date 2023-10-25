@@ -31,8 +31,9 @@
      // Create a 2D view
      const view = new MapView({
         map: map,
-        center: [-77.487206, 37.654347], // Longitude, latitude of Public Works where employees will start from
-        zoom: 16, // Zoom level
+        //zoom and center were adjusted for a more general extent when the application loads
+        center: [-77.43748, 37.54219], // Longitude, latitude of Public Works where employees will start from
+        zoom: 10, // Zoom level
         container: "viewDiv", // Div element
      });
 
@@ -333,63 +334,89 @@
     });  
   </script>
 
-  <!-- CSS to make a full screen map -->
+  <!-- CSS to make map -->
   <style>
       html,
       body,  
-      #viewDiv {padding: 0;  margin: 0;  height: 100%;  width: 100%}
-  </style> 
+      #viewDiv {
+         padding: 0;
+         margin: 0;
+         height: 95%;
+         width: 100%;}
 
-</head>
-<body>
-    <div id="viewDiv"></div>
-</body>
-</html>
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+      /*div for the title */
+      #titleDiv {
+         text-align: center;
+         font-size: 30px;
+         padding: 10px;
+         background-color: #f2f2f2;
+         height: 10%
+      }
+      
+     /* popup styles */
+      .popup {
+         display: none;
+         position: fixed;
+         z-index: 1;
+         left: 0;
+         top: 0;
+         width: 100%;
+         height: 100%;
+         overflow: auto;
+         background-color: rgba(0,0,0,0.4);
+      }
 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+      .popup-content {
+         background-color: #fefefe;
+         margin: 15% auto;
+         padding: 20px;
+         border: 1px solid #888;
+         width: 50%;
+      }
+
+      .close {
+         color: #aaaaaa;
+         float: right;
+         font-size: 28px;
+         font-weight: bold;
+         cursor: pointer;
+      }
+
+      .close:hover,
+      .close:focus {
+         color: #000;
+         text-decoration: none;
+         cursor: pointer;
+      }
+   </style></head>
+   <!--Add a header above the map with the Henrico County Logo and title of application-->
+   <body><div id="titleDiv"><img alt="Henrico County Seal" 
+      src="https://raw.githubusercontent.com/juliannesay/MidtermCodeReview/main/Henrico-County-Seal.gif" 
+      style="vertical-align:middle; margin-right:10px; height: 24px; width: auto;"/>
+      <span>Henrico County Stormwater Best Practice Management Inspections</span>
+      <!--add a popup as a welcome and instructions-->
+      </div><div class="popup" id="instructionsPopup"><div class="popup-content">
+      <span class="close" style="background-color: #f2f2f2; padding: 5px 10px; border: none; cursor: pointer;">Close</span>
+      <h2>Welcome to the Henrico County BMP Inspections App!</h2>
+      <p>This App shows the BMP Facilities in Henrico County as well as its priority level. To interact with the map, you can pan, zoom, and click on individual BMP points to get detailed information.
+          A stormwater BMP, or Best Management Practice, refers to methods designed to manage the quantity and improve the quality of stormwater runoff.</p>
+          <p>Click the ? button at any time to view these instructions again.</p>
+      </div></div>
+   <div id="viewDiv"></div>
+   <script>
+      //load the popup when the page loads and close it
+      window.onload = function() {
+      var popup = document.getElementById('instructionsPopup');
+      var span = document.getElementsByClassName('close')[0];
+      popup.style.display = 'block';
+      span.onclick = function() {
+         popup.style.display = 'none';
+      }
+      window.onclick = function(event) {
+         if (event.target == popup) {
+               popup.style.display = 'none';
+         }
+      }
+   }
+   </script></body>
+   </html>
